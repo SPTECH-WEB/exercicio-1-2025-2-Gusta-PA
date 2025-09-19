@@ -38,7 +38,7 @@ public class UsuarioController {
                 .orElse(null);
 
         if (usuarioPorId == null) {
-            return ResponseEntity.notFound().build(); // HTTP 404
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(usuarioPorId);
     }
@@ -63,7 +63,7 @@ public class UsuarioController {
                 .filter(user -> user.getDataNascimento().isAfter(nascimento)).toList();
 
         if (filtrados.isEmpty()) {
-            return ResponseEntity.noContent().build(); // 204 se não achar ninguém
+            return ResponseEntity.noContent().build();
         }
 
         return ResponseEntity.ok(filtrados);
@@ -86,8 +86,6 @@ public class UsuarioController {
         if (cpfExiste || emailExiste) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
-
-        // Atualiza os campos (exemplo)
         usuario.setNome(usuarioAtualizado.getNome());
         usuario.setCpf(usuarioAtualizado.getCpf());
         usuario.setEmail(usuarioAtualizado.getEmail());
